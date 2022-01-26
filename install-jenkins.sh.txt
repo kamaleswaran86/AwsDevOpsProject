@@ -1,0 +1,26 @@
+#!/bin/bash
+sudo apt-get update
+
+echo "Install Java JDK 8"
+apt-get install -y java-1.8.0-openjdk
+
+echo "Install Maven"
+apt-get install -y maven 
+
+echo "Install Jenkins"
+wget https://get.jenkins.io/war-stable/2.319.1/jenkins.war
+java -jar jenkins.war &
+
+echo "Install Docker"
+sudo apt-get install -y docker*
+sudo service docker start
+
+echo "Install Ansible"
+sudo apt-get install -y software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get install -y ansible
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
