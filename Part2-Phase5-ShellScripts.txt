@@ -1,3 +1,3 @@
-{% for host in groups['all'] %}
-{{hostvars[host] ['ansible_facts'] ['default_ipv4'] ['address']}} {{hostvars[host] ['ansible_facts'] ['fqdn']}} {{hostvars[host] ['ansible_facts'] ['hostname']}}
-{% endfor %}
+#!/usr/bin/env bash
+ansible-playbook getip.yml >> /ansible/awsdevops/logfile.txt
+cat logfile.txt  | grep "ok:"| head -1 | awk '{print $2}' | tr -d '[[^:print:]\t]' > logfile1.txt
